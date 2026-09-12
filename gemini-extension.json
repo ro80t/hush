@@ -1,6 +1,6 @@
 {
   "name": "hush",
   "version": "1.0.0",
-  "description": "Self-documenting naming and minimal, high-signal comments: rename before commenting, comment only what naming can't carry.",
+  "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
   "contextFileName": "GEMINI.md"
 }

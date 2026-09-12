@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "hush",
-      "description": "Rename before commenting, cap ordinary comments at ~3 lines, full docs+examples only for public APIs, comment only what naming can't carry.",
+      "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
       "source": "./",
       "category": "code-quality"
     }

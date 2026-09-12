@@ -4,6 +4,10 @@
   "private": true,
   "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
   "license": "MIT",
+  "keywords": ["comments", "code-style", "documentation", "self-documenting-code", "naming"],
+  "author": {
+    "name": "ROBOT"
+  },
   "homepage": "https://github.com/ro80t/hush",
   "repository": {
     "type": "git",
@@ -15,6 +19,13 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-rules.mjs",
-    "check": "node scripts/sync-rules.mjs && git diff --exit-code GEMINI.md .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents .claude"
+    "check": "node scripts/sync-rules.mjs && git diff --exit-code GEMINI.md gemini-extension.json .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents .claude .claude-plugin .codex-plugin"
+  },
+  "hushManifests": {
+    "category": "code-quality",
+    "codexSkillsPath": "./skills/",
+    "codexInstallPolicy": "AVAILABLE",
+    "geminiContextFileName": "GEMINI.md",
+    "claudeMarketplaceSchema": "https://anthropic.com/claude-code/marketplace.schema.json"
   }
 }

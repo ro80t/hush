@@ -1,8 +1,14 @@
 {
   "name": "hush",
   "version": "1.0.0",
-  "description": "Self-documenting naming + minimal, high-signal comments: rename before commenting, cap ordinary comments at ~3 lines, full docs with examples only for public APIs, comment only what naming can't carry.",
+  "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
   "license": "MIT",
-  "keywords": ["comments", "code-style", "documentation", "self-documenting-code", "naming"],
+  "keywords": [
+    "comments",
+    "code-style",
+    "documentation",
+    "self-documenting-code",
+    "naming"
+  ],
   "skills": "./skills/"
 }
