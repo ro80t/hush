@@ -17,7 +17,7 @@ See [`skills/hush/SKILL.md`](skills/hush/SKILL.md) for the full ruleset.
 With the [skills CLI](https://github.com/vercel-labs/skills) (`npx skills`):
 
 ```bash
-npx skills add <owner>/comment-skills
+npx skills add <owner>/hush
 ```
 
 Update later with:
@@ -33,7 +33,7 @@ This installs `skills/hush/SKILL.md` into the right directory for your agent (`.
 This repo is also a valid Claude Code plugin (`.claude-plugin/plugin.json` at the root). Add it as a marketplace source, or install directly:
 
 ```bash
-/plugin marketplace add <owner>/comment-skills
+/plugin marketplace add <owner>/hush
 /plugin install hush
 ```
 
@@ -44,7 +44,7 @@ Copy `skills/hush/` into whichever directory your agent scans for skills (e.g. `
 ## Repo layout
 
 ```tree
-comment-skills/
+hush/
   skills/
     hush/
       SKILL.md          # the skill — name + description frontmatter, then the ruleset
@@ -57,4 +57,4 @@ Adding a sibling skill later (e.g. a `hush-review` that audits an existing diff 
 
 ## License
 
-Set by the maintainer — not included in this scaffold.
+MIT — see [`LICENSE`](LICENSE).
