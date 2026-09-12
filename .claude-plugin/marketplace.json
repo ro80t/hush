@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "hush",
+  "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
+  "owner": {
+    "name": "ROBOT"
+  },
+  "plugins": [
+    {
+      "name": "hush",
+      "description": "Rename before commenting, cap ordinary comments at ~3 lines, full docs+examples only for public APIs, comment only what naming can't carry.",
+      "source": "./",
+      "category": "code-quality"
+    }
+  ]
+}

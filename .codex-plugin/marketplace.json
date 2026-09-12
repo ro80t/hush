@@ -1,0 +1,12 @@
+{
+  "name": "hush",
+  "plugins": [
+    {
+      "name": "hush",
+      "source": { "source": "local", "path": "./" },
+      "policy": {
+        "installation": "AVAILABLE"
+      }
+    }
+  ]
+}
