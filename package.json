@@ -15,6 +15,6 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-rules.mjs",
-    "check": "node scripts/sync-rules.mjs && git diff --exit-code AGENTS.md .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents"
+    "check": "node scripts/sync-rules.mjs && git diff --exit-code GEMINI.md .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents .claude"
   }
 }

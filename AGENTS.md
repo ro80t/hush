@@ -1,35 +1,45 @@
-# Hush
+# Working on this repo
 
-Code that explains itself. A comment only earns its line when a name can't do the job.
+This file is for an agent (or human) developing **hush itself** — not for a
+project that has installed hush. If you're looking for the ruleset hush
+enforces, read [`skills/hush/SKILL.md`](skills/hush/SKILL.md) instead.
 
-## The ladder
+## Single source of truth
 
-Before writing or keeping a comment, run it down this list and stop at the first rung that applies:
+`skills/hush/SKILL.md` is the only file you should hand-edit. Everything else
+in this list is generated from it by `npm run sync` (`node scripts/sync-rules.mjs`)
+and must not be hand-edited — your changes will be overwritten on the next sync:
 
-1. **Can a rename remove the need for this comment?** Rename, delete the comment. A comment restating what `isExpired` already says is noise; a variable called `flag` needing a comment to explain it is a naming bug, not a documentation gap.
-2. **Is this a public/exported surface** (library entry point, exported function/class/method, public API)? Write a full doc comment with a usage example. No length cap — see *Public API docs* below.
-3. **Would misreading this line cause a bug** — a non-obvious side effect, an invariant the type system can't express, a workaround for a specific library/platform quirk, a "don't reorder this" constraint? Comment it. This applies **regardless of public or private** visibility.
-4. **Is this a branch** (`if`/`for`/`while`/`switch`/`case`) whose condition or body can't be inferred from the names of the variables/functions/methods it uses? Write one short comment on *why*, not *what*.
-5. **None of the above** → no comment.
+- `GEMINI.md`, `.github/copilot-instructions.md`, `.windsurf/rules/hush.md`,
+  `.clinerules/hush.md`, `.qoder/rules/hush.md`, `.agents/rules/hush.md`,
+  `.cursor/rules/hush.mdc`, `.kiro/steering/hush.md` — the condensed ruleset
+  (the block between `<!-- RULE-SUMMARY:START -->` and `<!-- RULE-SUMMARY:END -->`
+  in `SKILL.md`), each with that tool's own frontmatter.
+- `.claude/skills/hush/SKILL.md`, `.agents/skills/hush/SKILL.md` — full,
+  byte-for-byte copies of `SKILL.md`, so this repo dogfoods its own skill when
+  opened directly in Claude Code or another `.agents/skills/`-aware agent.
 
-## Naming first
+After editing `SKILL.md`:
 
-When writing new code, name for the reader who has no comment to lean on: a function called `retryWithBackoff` needs no comment explaining it retries with backoff; a function called `process` does — but the fix is renaming it to `parseInvoiceLines`, not adding a comment on top of `process`.
+```bash
+npm run sync    # regenerate everything above
+npm run check   # regenerate + fail if anything is still out of date (CI)
+```
 
-## Length and line breaks
+This file (`AGENTS.md`) and `CLAUDE.md` are hand-maintained and never touched
+by the sync script.
 
-- Ordinary comments (rungs 3 and 4): target **~3 lines**.
-- Break lines at clause/phrase boundaries — wherever the reader's eye naturally pauses — never mid-thought just to hit a character count.
-- A clear, meaning-preserving break that runs to 4–5 lines beats a cramped 3-line wrap that severs a clause. The 3-line target yields to line-break clarity, not the other way around.
+## Why not symlinks
 
-## Public API docs
+A symlink from, say, `AGENTS.md` to `SKILL.md` would drag SKILL.md's YAML
+frontmatter and worked `## Examples` into a file that needs to stay plain
+instructions, and it silently turns into a broken text file on a GitHub
+"Download ZIP" or a Windows checkout without symlink support enabled. Generating
+literal copies from one source avoids both problems at the cost of running one
+script after an edit.
 
-Exported functions, classes, methods, and other library-boundary surfaces are exempt from the length cap. Include what a caller needs to use it without reading the implementation — parameters, return value, thrown/rejected errors, and a short usage example. Running past 3 lines here is expected, not a violation.
+## Repo layout
 
-## What always gets a comment, public or private
-
-Non-obvious side effects, invariants the type system can't express, workarounds for a specific bug or library quirk, ordering constraints, anything a careful reader could misread and break.
-
-## What never gets a comment
-
-Anything a rename would fix: restating the method name, narrating a straightforward loop (`// increment i`), echoing a type, describing what the next line obviously does.
+See the [README](README.md#repo-layout) for the full file tree and what each
+plugin manifest (`.claude-plugin/`, `.codex-plugin/`, `gemini-extension.json`)
+is for.

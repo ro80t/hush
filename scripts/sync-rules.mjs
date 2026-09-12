@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-// Single source of truth is skills/hush/SKILL.md. Everything below is generated
-// from the block between RULE-SUMMARY:START/END — edit SKILL.md, then rerun
-// this script. A symlink can't do this job: it would drag SKILL.md's YAML
-// frontmatter and worked Examples into files that must stay plain instructions.
+// Single source of truth is skills/hush/SKILL.md. The condensed rule files below
+// are generated from the block between RULE-SUMMARY:START/END, and the local
+// skill-discovery copies are a full-file copy of SKILL.md itself — edit
+// SKILL.md, then rerun this script. A symlink can't do this job: it would drag
+// SKILL.md's YAML frontmatter and worked Examples into files that must stay
+// plain instructions. AGENTS.md and CLAUDE.md are NOT generated here — they're
+// hand-maintained dev docs for people working on this repo, not distributed copies.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,7 +30,8 @@ function write(relPath, content) {
   console.log(`wrote ${relPath}`);
 }
 
-write("AGENTS.md", summary);
+// Condensed rule copies (ladder + naming + length rules, no frontmatter/examples).
+write("GEMINI.md", summary);
 write(".github/copilot-instructions.md", summary);
 write(".windsurf/rules/hush.md", summary);
 write(".clinerules/hush.md", summary);
@@ -43,3 +47,8 @@ write(
   ".kiro/steering/hush.md",
   `---\ntitle: Hush, self-documenting code mode\ninclusion: always\n---\n\n${summary}`
 );
+
+// Full SKILL.md copies for each tool's project-local skill auto-discovery, so
+// opening this repo directly in that agent loads the real skill for dogfooding.
+write(".claude/skills/hush/SKILL.md", source);
+write(".agents/skills/hush/SKILL.md", source);
