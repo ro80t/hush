@@ -50,19 +50,46 @@ codex plugin install hush
 
 Copy `skills/hush/` into whichever directory your agent scans for skills (e.g. `~/.claude/skills/hush/`, `~/.codex/skills/hush/`).
 
+### Everyone else
+
+Agents that don't support a skills/plugin system read plain instruction files. `skills/hush/SKILL.md` is the single source of truth — the block between `<!-- RULE-SUMMARY:START -->` and `<!-- RULE-SUMMARY:END -->` is extracted verbatim into every file below by `npm run sync` (`node scripts/sync-rules.mjs`). Edit `SKILL.md`, run `npm run sync`, and every adapter updates together — no hand-copying, and no symlinks (a symlink would drag SKILL.md's YAML frontmatter and worked Examples into files that must stay plain instructions, and breaks on a GitHub zip download or a Windows checkout without symlink support). `npm run check` reruns the sync and fails if anything is out of date — wire it into CI to catch drift.
+
+| Agent / editor | File |
+|---|---|
+| Any AGENTS.md-reading agent (OpenCode, Devin, etc.) | `AGENTS.md` |
+| GitHub Copilot | `.github/copilot-instructions.md` |
+| Cursor | `.cursor/rules/hush.mdc` |
+| Windsurf | `.windsurf/rules/hush.md` |
+| Cline | `.clinerules/hush.md` |
+| Kiro | `.kiro/steering/hush.md` |
+| Qoder | `.qoder/rules/hush.md` |
+| Generic `.agents/` convention | `.agents/rules/hush.md` |
+| Gemini CLI | `gemini-extension.json` (points `contextFileName` at `AGENTS.md`) |
+
 ## Repo layout
 
 ```tree
 hush/
   skills/
     hush/
-      SKILL.md            # the skill itself — name + description frontmatter, then the ruleset
+      SKILL.md            # the skill itself — name + description frontmatter, then the full ruleset + examples
   .claude-plugin/
     plugin.json           # Claude Code plugin manifest
     marketplace.json      # self-hosted Claude Code marketplace listing
   .codex-plugin/
-    plugin.json            # Codex plugin manifest (points "skills" at ./skills/)
-    marketplace.json       # self-hosted Codex marketplace listing
+    plugin.json           # Codex plugin manifest (points "skills" at ./skills/)
+    marketplace.json      # self-hosted Codex marketplace listing
+  scripts/
+    sync-rules.mjs         # extracts the summary block from SKILL.md into every adapter below
+  AGENTS.md               # generated — do not hand-edit, edit SKILL.md and rerun the script
+  gemini-extension.json   # Gemini CLI extension, points at AGENTS.md
+  .github/copilot-instructions.md
+  .cursor/rules/hush.mdc
+  .windsurf/rules/hush.md
+  .clinerules/hush.md
+  .kiro/steering/hush.md
+  .qoder/rules/hush.md
+  .agents/rules/hush.md
   README.md
   LICENSE
 ```

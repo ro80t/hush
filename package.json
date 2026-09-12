@@ -1,0 +1,20 @@
+{
+  "name": "hush",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-documenting naming and minimal, high-signal comments for AI coding agents.",
+  "license": "MIT",
+  "homepage": "https://github.com/ro80t/hush",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ro80t/hush.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ro80t/hush/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-rules.mjs",
+    "check": "node scripts/sync-rules.mjs && git diff --exit-code AGENTS.md .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents"
+  }
+}
