@@ -26,11 +26,15 @@ Walk every comment in the target through the hush ladder:
 2. **Missing** — a public/exported surface with no usage-bearing doc comment
    in the language's standard format (JSDoc, Javadoc, docstrings, rustdoc,
    godoc, XML doc comments, ...), the format an LSP will actually surface.
-3. **Undocumented gotcha** — a non-obvious side effect, invariant, workaround,
-   or ordering constraint with no comment at all.
-4. **Oversized** — an ordinary comment (not a public API doc) that runs well
+3. **Type-duplicating** — a doc comment restating what the type system
+   already guarantees (e.g. a `@param {string}` tag in a typed language),
+   which rots the moment the signature changes and the doc doesn't.
+4. **Undocumented gotcha** — a non-obvious side effect, invariant, workaround,
+   ordering constraint, or rejected alternative worth warning off, with no
+   comment at all.
+5. **Oversized** — an ordinary comment (not a public API doc) that runs well
    past ~3 lines without a clause-boundary reason.
-5. **Stale** — a comment that no longer matches the code beside it.
+6. **Stale** — a comment that no longer matches the code beside it.
 
 ## Output
 

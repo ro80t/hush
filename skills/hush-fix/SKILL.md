@@ -26,8 +26,11 @@ given.
   value, thrown/rejected errors, and a short usage example — no length cap.
   Use the language's standard doc-comment format (JSDoc, Javadoc, docstrings,
   rustdoc, godoc, XML doc comments, ...) so the LSP surfaces it on hover.
+- **Type-duplicating doc** → drop the redundant type tag, keep behavior,
+  constraints, and the example — the type checker already owns the type.
 - **Undocumented gotcha** → add the shortest comment that carries the *why*,
-  ~3 lines, broken at clause boundaries.
+  ~3 lines, broken at clause boundaries. Covers rejected alternatives too —
+  say what was tried and why it doesn't work, not just what does.
 - **Oversized comment** → tighten to ~3 lines unless a clause-boundary break
   justifies 4–5.
 - **Stale comment** → update it to match the code, or delete it if the code
