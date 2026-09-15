@@ -24,6 +24,8 @@ given.
   of guessing.
 - **Missing public API doc** → add a doc comment with parameters, return
   value, thrown/rejected errors, and a short usage example — no length cap.
+  Use the language's standard doc-comment format (JSDoc, Javadoc, docstrings,
+  rustdoc, godoc, XML doc comments, ...) so the LSP surfaces it on hover.
 - **Undocumented gotcha** → add the shortest comment that carries the *why*,
   ~3 lines, broken at clause boundaries.
 - **Oversized comment** → tighten to ~3 lines unless a clause-boundary break

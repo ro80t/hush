@@ -33,6 +33,8 @@ When writing new code, name for the reader who has no comment to lean on: a func
 
 Exported functions, classes, methods, and other library-boundary surfaces are exempt from the length cap. Include what a caller needs to use it without reading the implementation — parameters, return value, thrown/rejected errors, and a short usage example. Running past 3 lines here is expected, not a violation.
 
+Write it in the language's standard doc-comment format — JSDoc in JS/TS, Javadoc in Java, docstrings in Python, rustdoc in Rust, godoc in Go, XML doc comments in C# — whenever the language has one. That's what makes the LSP surface it as hover/autocomplete instead of leaving it as a comment only a source reader ever sees.
+
 ## What always gets a comment, public or private
 
 Non-obvious side effects, invariants the type system can't express, workarounds for a specific bug or library quirk, ordering constraints, anything a careful reader could misread and break.

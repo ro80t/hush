@@ -23,7 +23,9 @@ Walk every comment in the target through the hush ladder:
 
 1. **Redundant** — a rename would remove the need for it: restates the
    identifier, narrates an obvious line, echoes a type.
-2. **Missing** — a public/exported surface with no usage-bearing doc comment.
+2. **Missing** — a public/exported surface with no usage-bearing doc comment
+   in the language's standard format (JSDoc, Javadoc, docstrings, rustdoc,
+   godoc, XML doc comments, ...), the format an LSP will actually surface.
 3. **Undocumented gotcha** — a non-obvious side effect, invariant, workaround,
    or ordering constraint with no comment at all.
 4. **Oversized** — an ordinary comment (not a public API doc) that runs well
