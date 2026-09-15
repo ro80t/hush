@@ -12,6 +12,11 @@ An [Agent Skill](https://github.com/vercel-labs/skills) that enforces self-docum
 
 See [`skills/hush/SKILL.md`](skills/hush/SKILL.md) for the full ruleset.
 
+Two sibling skills apply that same ladder to code that already exists:
+
+- **hush-review** — audits comments in the current diff (or a given path/branch/PR) and reports findings, read-only.
+- **hush-fix** — runs the same audit and applies the fixes: renames to drop redundant comments, adds missing public API docs, trims oversized comments, updates or removes stale ones.
+
 ## Install
 
 With the [skills CLI](https://github.com/vercel-labs/skills) (`npx skills`):
@@ -86,6 +91,10 @@ hush/
   skills/
     hush/
       SKILL.md              # the skill itself — name + description frontmatter, then the full ruleset + examples
+    hush-review/
+      SKILL.md              # read-only audit of existing comments against the hush ladder
+    hush-fix/
+      SKILL.md              # same audit, but applies the fixes
   .claude/
     skills/hush/SKILL.md     # generated full copy — Claude Code project-local dogfood
   .agents/
@@ -113,7 +122,7 @@ hush/
   LICENSE
 ```
 
-Adding a sibling skill later (e.g. a `hush-review` that audits an existing diff for comment-noise) just means a new `skills/<name>/SKILL.md` directory — no other changes needed.
+Adding another sibling skill later just means a new `skills/<name>/SKILL.md` directory — no other changes needed, same as `hush-review` and `hush-fix` above.
 
 ## License
 
