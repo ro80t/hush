@@ -19,7 +19,9 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-rules.mjs",
-    "check": "node scripts/sync-rules.mjs && git diff --exit-code GEMINI.md gemini-extension.json .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents .claude .claude-plugin .codex-plugin"
+    "check": "node scripts/sync-rules.mjs && git diff --exit-code GEMINI.md gemini-extension.json .github/copilot-instructions.md .cursor .windsurf .clinerules .kiro .qoder .agents .claude .claude-plugin .codex-plugin",
+    "changeset": "changeset",
+    "version": "changeset version"
   },
   "hushManifests": {
     "category": "code-quality",
@@ -27,5 +29,8 @@
     "codexInstallPolicy": "AVAILABLE",
     "geminiContextFileName": "GEMINI.md",
     "claudeMarketplaceSchema": "https://anthropic.com/claude-code/marketplace.schema.json"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^3.0.3"
   }
 }
